@@ -1,4 +1,4 @@
-#!/bin/bash
+    #!/bin/bash
 if [[ -f /api/judge0.conf ]]; then
     CONFIG_FILE=/api/judge0.conf
 elif [[ -f /judge0.conf ]]; then
@@ -39,6 +39,7 @@ export COUNT=${COUNT:-$(( $(nproc) * 2 ))}
 export QUEUE=${JUDGE0_VERSION:-unknown} # This option is not available in judge0.conf
 
 # Database
+export REDIS_URL=${REDIS_URL:-localhost}
 export REDIS_HOST=${REDIS_HOST:-localhost}
 export REDIS_PORT=${REDIS_PORT:-6379}
 export POSTGRES_HOST=${POSTGRES_HOST:-localhost}
