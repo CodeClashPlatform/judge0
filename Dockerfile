@@ -37,11 +37,11 @@ COPY . .
 ENTRYPOINT ["/api/docker-entrypoint.sh"]
 CMD ["/api/scripts/server"]
 
-RUN useradd -u 1000 -m -r judge0 && \
-    echo "judge0 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers && \
-    chown judge0: /api/tmp/
+# RUN useradd -u 1000 -m -r judge0 && \
+#     echo "judge0 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers && \
+#     chown judge0: /api/tmp/
 
-USER judge0
+# USER judge0
 
 ENV JUDGE0_VERSION "1.13.1"
 LABEL version=$JUDGE0_VERSION
