@@ -1,4 +1,4 @@
-FROM judge0/api:1.13.1
+FROM judge0/judge0:1.13.0
 
 # Set environment variables and labels
 ENV JUDGE0_HOMEPAGE "https://judge0.com"
