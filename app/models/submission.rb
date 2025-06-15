@@ -91,8 +91,7 @@ class Submission < ApplicationRecord
 
   def source_code=(value)
     @decoded_source_code = nil # Clear memoized value
-    write_attribute(:source_code, value) # Use write_attribute instead of super
-    self[:source_code] = Base64Service.encode(self[:source_code])
+    self[:source_code] = Base64Service.encode(value)
   end
 
 
@@ -102,8 +101,7 @@ class Submission < ApplicationRecord
 
   def stdin=(value)
     @decoded_stdin = nil
-    write_attribute(:stdin, value)
-    self[:stdin] = Base64Service.encode(self[:stdin])
+    self[:stdin] = Base64Service.encode(value)
   end
 
 
@@ -113,8 +111,7 @@ class Submission < ApplicationRecord
 
   def stdout=(value)
     @decoded_stdout = nil
-    write_attribute(:stdout, value)
-    self[:stdout] = Base64Service.encode(self[:stdout])
+    self[:stdout] = Base64Service.encode(value)
   end
 
 
@@ -124,8 +121,7 @@ class Submission < ApplicationRecord
 
   def expected_output=(value)
     @decoded_expected_output = nil
-    write_attribute(:expected_output, value)
-    self[:expected_output] = Base64Service.encode(self[:expected_output])
+    self[:expected_output] = Base64Service.encode(value)
   end
 
 
@@ -135,8 +131,7 @@ class Submission < ApplicationRecord
 
   def stderr=(value)
     @decoded_stderr = nil
-    write_attribute(:stderr, value)
-    self[:stderr] = Base64Service.encode(self[:stderr])
+    self[:stderr] = Base64Service.encode(value)
   end
 
 
@@ -146,8 +141,7 @@ class Submission < ApplicationRecord
 
   def compile_output=(value)
     @decoded_compile_output = nil
-    write_attribute(:compile_output, value)
-    self[:compile_output] = Base64Service.encode(self[:compile_output])
+    self[:compile_output] = Base64Service.encode(value)
   end
 
 
