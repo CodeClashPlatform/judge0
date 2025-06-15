@@ -90,8 +90,8 @@ class Submission < ApplicationRecord
   end
 
   def source_code=(value)
-    super(value)
-    self[:source_code] = Base64Service.encode(self[:source_code])
+    @decoded_source_code = nil
+    write_attribute(:source_code, value.present? ? Base64Service.encode(value) : nil)
   end
 
 
@@ -100,8 +100,8 @@ class Submission < ApplicationRecord
   end
 
   def stdin=(value)
-    super(value)
-    self[:stdin] = Base64Service.encode(self[:stdin])
+    @decoded_stdin = nil
+    write_attribute(:stdin, value.present? ? Base64Service.encode(value) : nil)
   end
 
 
@@ -110,8 +110,8 @@ class Submission < ApplicationRecord
   end
 
   def stdout=(value)
-    super(value)
-    self[:stdout] = Base64Service.encode(self[:stdout])
+    @decoded_stdout = nil
+    write_attribute(:stdout, value.present? ? Base64Service.encode(value) : nil)
   end
 
 
@@ -120,8 +120,8 @@ class Submission < ApplicationRecord
   end
 
   def expected_output=(value)
-    super(value)
-    self[:expected_output] = Base64Service.encode(self[:expected_output])
+    @decoded_expected_output = nil
+    write_attribute(:expected_output, value.present? ? Base64Service.encode(value) : nil)
   end
 
 
@@ -130,8 +130,8 @@ class Submission < ApplicationRecord
   end
 
   def stderr=(value)
-    super(value)
-    self[:stderr] = Base64Service.encode(self[:stderr])
+    @decoded_stderr = nil
+    write_attribute(:stderr, value.present? ? Base64Service.encode(value) : nil)
   end
 
 
@@ -140,8 +140,8 @@ class Submission < ApplicationRecord
   end
 
   def compile_output=(value)
-    super(value)
-    self[:compile_output] = Base64Service.encode(self[:compile_output])
+    @decoded_compile_output = nil
+    write_attribute(:compile_output, value.present? ? Base64Service.encode(value) : nil)
   end
 
 
