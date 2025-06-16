@@ -91,6 +91,7 @@ class Submission < ApplicationRecord
 
   def source_code=(value)
     @decoded_source_code = nil
+    # Remove the implicit super call by directly using write_attribute
     write_attribute(:source_code, value.present? ? Base64Service.encode(value) : nil)
   end
 
