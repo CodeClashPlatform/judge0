@@ -94,7 +94,6 @@ class Submission < ApplicationRecord
     write_attribute(:source_code, value.present? ? Base64Service.encode(value) : nil)
   end
 
-
   def stdin
     @decoded_stdin ||= Base64Service.decode(self[:stdin])
   end
@@ -103,7 +102,6 @@ class Submission < ApplicationRecord
     @decoded_stdin = nil
     write_attribute(:stdin, value.present? ? Base64Service.encode(value) : nil)
   end
-
 
   def stdout
     @decoded_stdout ||= Base64Service.decode(self[:stdout])
@@ -114,7 +112,6 @@ class Submission < ApplicationRecord
     write_attribute(:stdout, value.present? ? Base64Service.encode(value) : nil)
   end
 
-
   def expected_output
     @decoded_expected_output ||= Base64Service.decode(self[:expected_output])
   end
@@ -123,7 +120,6 @@ class Submission < ApplicationRecord
     @decoded_expected_output = nil
     write_attribute(:expected_output, value.present? ? Base64Service.encode(value) : nil)
   end
-
 
   def stderr
     @decoded_stderr ||= Base64Service.decode(self[:stderr])
@@ -134,7 +130,6 @@ class Submission < ApplicationRecord
     write_attribute(:stderr, value.present? ? Base64Service.encode(value) : nil)
   end
 
-
   def compile_output
     @decoded_compile_output ||= Base64Service.decode(self[:compile_output])
   end
@@ -144,11 +139,9 @@ class Submission < ApplicationRecord
     write_attribute(:compile_output, value.present? ? Base64Service.encode(value) : nil)
   end
 
-
   def language
     @language ||= Language.unscoped.find_by(id: language_id)
   end
-
 
   def status
     Status.find_by(id: status_id)
@@ -157,7 +150,6 @@ class Submission < ApplicationRecord
   def status=(status)
     self.status_id = status.id
   end
-
 
   def is_project
     language.try(:is_project) || false
@@ -186,9 +178,9 @@ class Submission < ApplicationRecord
       return
     end
 
-    @@allowed_languages ||= Config::ALLOWED_LANGUAGES_FOR_COMPILER_OPTIONS.collect{ |s| s + " " }
+    @@allowed_languages ||= Config::ALLOWED_LANGUAGES_FOR_COMPILER_OPTIONS.collect { |s| s + " " }
     if language && @@allowed_languages.present? && !language.name.starts_with?(*@@allowed_languages)
-      @@allowed_languages_message ||= @@allowed_languages.size > 1 ? @@allowed_languages[0..-2].collect{ |s| s.strip }.join(", ") + " and " + @@allowed_languages[-1].strip : @@allowed_languages[0].strip
+      @@allowed_languages_message ||= @@allowed_languages.size > 1 ? @@allowed_languages[0..-2].collect { |s| s.strip }.join(", ") + " and " + @@allowed_languages[-1].strip : @@allowed_languages[0].strip
       errors.add(:compiler_options, "setting compiler options is only allowed for #{@@allowed_languages_message}")
     end
   end
