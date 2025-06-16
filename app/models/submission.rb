@@ -157,13 +157,13 @@ class Submission < ApplicationRecord
 
   private
 
-  def language_existence
-    if not language
-      errors.add(:language_id, "language with id #{language_id} doesn't exist")
-    elsif language.is_archived
-      errors.add(:language_id, "language with id #{language_id} is archived and cannot be used anymore")
-    end
+def language_existence
+  if not language
+    errors.add(:language_id, "language with id #{language_id} doesn't exist")
+  elsif language.is_archived
+    errors.add(:language_id, "language with id #{language_id} is archived and cannot be used anymore")
   end
+end
 
   def compiler_options_allowed
     return if compiler_options.blank?
@@ -178,9 +178,9 @@ class Submission < ApplicationRecord
       return
     end
 
-    @@allowed_languages ||= Config::ALLOWED_LANGUAGES_FOR_COMPILER_OPTIONS.collect { |s| s + " " }
+    @@allowed_languages ||= Config::ALLOWED_LANGUAGES_FOR_COMPILER_OPTIONS.collect{ |s| s + " " }
     if language && @@allowed_languages.present? && !language.name.starts_with?(*@@allowed_languages)
-      @@allowed_languages_message ||= @@allowed_languages.size > 1 ? @@allowed_languages[0..-2].collect { |s| s.strip }.join(", ") + " and " + @@allowed_languages[-1].strip : @@allowed_languages[0].strip
+      @@allowed_languages_message ||= @@allowed_languages.size > 1 ? @@allowed_languages[0..-2].collect{ |s| s.strip }.join(", ") + " and " + @@allowed_languages[-1].strip : @@allowed_languages[0].strip
       errors.add(:compiler_options, "setting compiler options is only allowed for #{@@allowed_languages_message}")
     end
   end
@@ -251,3 +251,4 @@ class Submission < ApplicationRecord
     )
   end
 end
+

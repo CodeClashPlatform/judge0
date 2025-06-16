@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: judge0
+    env: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec rails server"
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_MASTER_KEY
+        sync: false
+    healthCheckPath: /health

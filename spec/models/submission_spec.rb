@@ -24,3 +24,5 @@ RSpec.describe Submission, type: :model do
     expect(submission).to be_valid
   end
 end
+
+
